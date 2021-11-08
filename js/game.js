@@ -1,4 +1,7 @@
-import * as THREE from "../node_modules/three/build/three.module.js";
+import * as THREE from 'https://threejsfundamentals.org/threejs/resources/threejs/r122/build/three.module.js';
+import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/threejs/r122/examples/jsm/controls/OrbitControls.js';
+
+
 
 function main() {
   const canvas = document.querySelector("#c");
@@ -12,6 +15,7 @@ function main() {
   camera.position.z = 2;
   camera.position.y = 1;
 
+ 
   const scene = new THREE.Scene();
 
   {
@@ -39,6 +43,19 @@ function main() {
 
     return cube;
   }
+  
+  const points = [];
+  points.push( new THREE.Vector3( - 10, 0, 0 ) );
+points.push( new THREE.Vector3( 0, 10, 0 ) );
+points.push( new THREE.Vector3( 10, 0, 0 ) );
+  
+  const igeometry = new THREE.BufferGeometry().setFromPoints( points );
+
+  const imaterial = new THREE.LineBasicMaterial( { color: 0x0000ff } );
+
+  const line = new THREE.Line( igeometry, imaterial );
+  scene.add( line );
+
   const roadgeometry = new THREE.PlaneGeometry( 5,100 );
   const roadmaterial = new THREE.LineDashedMaterial( {
 	color: 0xffff00,
