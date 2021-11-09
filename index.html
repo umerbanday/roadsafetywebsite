@@ -27,7 +27,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#41719b', end
 
 <body>
      <canvas id="c"></canvas> 
-     <script type="module" src="game.js"></script>
+     <script type="module">
+         import { main } from "./game.js";
+         main();
+     </script>
 </body>
 
 </html>

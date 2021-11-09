@@ -1,6 +1,6 @@
-import * as THREE from '/build/three.module.js';
+import * as THREE from './build/three.module.js';
 //import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/threejs/r122/examples/jsm/controls/OrbitControls.js';
-import {GLTFLoader} from '/build/GLTFLoader.js';
+import {GLTFLoader} from './build/GLTFLoader.js';
 //import { MeshLine ,MeshLineMaterial} from '../node_modules/three.meshline/src/THREE.MeshLine.js';
 
 function main() {
@@ -176,4 +176,4 @@ scene.add( amlight );
   requestAnimationFrame(render);
 }
 
-main();
+export {main};
