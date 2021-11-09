@@ -33,7 +33,7 @@ function main() {
     light.position.set(-1, 2, 4);
     scene.add(light);
   }
-  gltfloader.load('../static/carbody1.gltf',(gltf)=>{
+  gltfloader.load('static/carbody1.gltf',(gltf)=>{
     car=gltf.scene
     cubes = [
         makeInstance(gltf.scene, 0x44aa88, 0, -50),
