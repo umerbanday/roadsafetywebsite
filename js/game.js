@@ -1,7 +1,7 @@
-import * as THREE from 'https://threejsfundamentals.org/threejs/resources/threejs/r122/build/three.module.js';
-import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/threejs/r122/examples/jsm/controls/OrbitControls.js';
-import {GLTFLoader} from 'https://threejsfundamentals.org/threejs/resources/threejs/r122/examples/jsm/loaders/GLTFLoader.js';
-import { MeshLine ,MeshLineMaterial} from '../node_modules/three.meshline/src/THREE.MeshLine.js';
+import * as THREE from '../build/three.module.js';
+//import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/threejs/r122/examples/jsm/controls/OrbitControls.js';
+import {GLTFLoader} from '../build/GLTFLoader.js';
+//import { MeshLine ,MeshLineMaterial} from '../node_modules/three.meshline/src/THREE.MeshLine.js';
 
 function main() {
 
@@ -85,20 +85,20 @@ function main() {
   line.computeLineDistances();
   var resolution = new THREE.Vector2( window.innerWidth, window.innerHeight );
 
-  const mline = new MeshLine();
-  mline.setPoints(points);
-  const materialm = new MeshLineMaterial(
-    {
-		useMap: false,
-		color: 0xffffff,
-		opacity: 1,
-		resolution: resolution,
-		sizeAttenuation: false,
-		lineWidth: 10,
-	}
-  );
-  const meshl = new THREE.Mesh(mline, materialm);
-  scene.add(meshl);
+  //const mline = new MeshLine();
+  //mline.setPoints(points);
+  //const materialm = new MeshLineMaterial(
+   // {
+//		useMap: false,
+//		color: 0xffffff,
+//		opacity: 1,
+//		resolution: resolution,
+//		sizeAttenuation: false,
+//		lineWidth: 10,
+//	}
+ // );
+//const meshl = new THREE.Mesh(mline, materialm);
+ // scene.add(meshl);
 
 
   const roadgeometry = new THREE.PlaneGeometry( 20,200 );
