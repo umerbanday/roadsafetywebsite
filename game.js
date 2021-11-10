@@ -176,4 +176,3 @@ scene.add( amlight );
   requestAnimationFrame(render);
 }
 main()
-export {main};
