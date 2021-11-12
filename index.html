@@ -4,37 +4,55 @@
 
 <head>
     <meta charset="utf-8">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XHYGK069FT"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-XHYGK069FT');
+    </script>
     <title>My first three.js app</title>
-    <style>
-        html, body {
-           margin: 0;
-           height: 100%;
-        }
-        #c {
-           width: 100%;
-           height: 100%;
-           /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#41719b+0,7eaed6+50,efce81+100 */
-background: #41719b; /* Old browsers */
-background: -moz-linear-gradient(top,  #41719b 0%, #7eaed6 50%, #efce81 100%); /* FF3.6-15 */
-background: -webkit-linear-gradient(top,  #41719b 0%,#7eaed6 50%,#efce81 100%); /* Chrome10-25,Safari5.1-6 */
-background: linear-gradient(to bottom,  #41719b 0%,#7eaed6 50%,#efce81 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#41719b', endColorstr='#efce81',GradientType=0 ); /* IE6-9 */
+    <link rel="stylesheet" href="styles.css">
 
-
-        }
-        </style>
-        
-       
 </head>
 
 <body>
-     <canvas id="c"></canvas> 
-
-     <script type="module" src="js/game.js">
 
 
-     </script>
-     
+    <div id="menubar">
+
+    </div>
+
+    <div id="hero">
+
+    </div>
+
+    <div id="info">
+
+    </div>
+
+    <div id="interactive">
+        <canvas id="c"></canvas>
+
+    </div>
+
+    <div id="social">
+
+    </div>
+
+    <div id="bottom">
+
+    </div>
+
+
+
+    <script type="module" src="js/game.js">
+
+
+    </script>
+
 </body>
 
 </html>

@@ -1,0 +1,60 @@
+
+        html, body {
+           margin: 0;
+           height: 100%;
+        }
+        #c {
+           width: 100%;
+           height: 100%;
+           /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#41719b+0,7eaed6+50,efce81+100 */
+background: #41719b; /* Old browsers */
+background: -moz-linear-gradient(top,  #41719b 0%, #7eaed6 50%, #efce81 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  #41719b 0%,#7eaed6 50%,#efce81 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  #41719b 0%,#7eaed6 50%,#efce81 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#41719b', endColorstr='#efce81',GradientType=0 ); /* IE6-9 */
+
+
+        }
+
+        #menubar{
+
+            height: 5rem;
+            background-color: blueviolet;
+
+        }
+
+        #hero{
+            height: 20rem;
+            background-color: rgb(43, 226, 125);
+            
+        }
+
+        #info{
+            height: 40rem;
+            background-color: rgb(226, 198, 43);
+            
+        }
+
+        #interactive{
+            height: 50rem;
+            
+            
+        }
+
+        #social{
+            height: 50rem;
+            background-color: rgb(43, 226, 226);
+            
+            
+        }
+
+        #bottom{
+            height: 10rem;
+            background-color: rgb(0, 0, 0);
+            
+            
+        }
+
+
+    
+        
