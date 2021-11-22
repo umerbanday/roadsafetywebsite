@@ -17,9 +17,10 @@ function main() {
   const far = 1000;
   const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
   //const controls = new OrbitControls( camera, renderer.domElement );
-  camera.position.z =0.5;
-  camera.position.y = 2.2;
-  camera.lookAt(new THREE.Vector3(0,2.2,0))
+  camera.position.z =0.4;
+  camera.position.y = 2.9;
+  camera.position.x = 1;
+  camera.lookAt(new THREE.Vector3(1,2.9,0))
   //controls.update();
 
  
@@ -33,7 +34,7 @@ function main() {
     light.position.set(-1, 2, 4);
     scene.add(light);
   }
-  gltfloader.load('static/carbody1.gltf',(gltf)=>{
+  gltfloader.load('static/carthree.gltf',(gltf)=>{
     car=gltf.scene
     cubes = [
         makeInstance(gltf.scene, 0x44aa88, 0, -50),
