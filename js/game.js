@@ -176,5 +176,18 @@ scene.add( amlight );
   }
   requestAnimationFrame(render);
 }
-main()
+
+const gamebtn = document.getElementById("playbtn")
+const gamecanvas = document.getElementById("c")
+
+gamebtn.addEventListener('click',()=>{
+  console.log("game clicked")
+  gamecanvas.style.display="block";
+  window.scrollTo(0, 3000);
+  main()
+})
+
+
+
+
 
