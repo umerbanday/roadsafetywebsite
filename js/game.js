@@ -1,14 +1,14 @@
 import * as THREE from "https://cdn.skypack.dev/three@0.132.2";
 import { GLTFLoader } from "https://cdn.skypack.dev/three@0.132.2/examples/jsm/loaders/GLTFLoader.js";
 import { SVGLoader } from "https://cdn.skypack.dev/three@0.132.2/examples/jsm/loaders/SVGLoader.js";
-import { EffectComposer } from "https://cdn.skypack.dev/three@0.132.2/examples/jsm/postprocessing/EffectComposer.js";
+/*import { EffectComposer } from "https://cdn.skypack.dev/three@0.132.2/examples/jsm/postprocessing/EffectComposer.js";
 import { RenderPass } from "https://cdn.skypack.dev/three@0.132.2/examples/jsm/postprocessing/RenderPass.js";
 import { BloomPass } from "https://cdn.skypack.dev/three@0.132.2/examples/jsm/postprocessing/BloomPass.js";
 import { FilmPass } from "https://cdn.skypack.dev/three@0.132.2/examples/jsm/postprocessing/FilmPass.js";
 import { HorizontalBlurShader } from "https://cdn.skypack.dev/three@0.132.2/examples/jsm/shaders/HorizontalBlurShader.js";
 import { VerticalBlurShader } from "https://cdn.skypack.dev/three@0.132.2/examples/jsm/shaders/VerticalBlurShader.js";
 import { ShaderPass } from "https://cdn.skypack.dev/three@0.132.2/examples/jsm/postprocessing/ShaderPass.js";
-import { OrbitControls } from "https://cdn.skypack.dev/three@0.132.2/examples/jsm/controls/OrbitControls.js";
+import { OrbitControls } from "https://cdn.skypack.dev/three@0.132.2/examples/jsm/controls/OrbitControls.js";*/
 
 //setup the loader
 const manager = new THREE.LoadingManager();
@@ -18,7 +18,8 @@ const models = {
   road: { url: "../static/roadnew.gltf", gltf: null },
 };
 
-var mode="drunk"
+var mode="drunk";
+var speed_step=0.5;
 
 const gltfLoader = new GLTFLoader(manager);
 //SVG Loader
@@ -202,6 +203,8 @@ var composer1;
 var vblur;
 var hblur;
 
+var intervalID;
+
 var bbox;
 var bbox1;
 var controls;
@@ -298,7 +301,7 @@ function init() {
 
   gamecanvas.classList.add("blur")
 
-  const canv = renderer.domElement;
+  /*const canv = renderer.domElement;
 
   composer = new EffectComposer(renderer);
 
@@ -479,30 +482,38 @@ function resizeRendererToDisplaySize(renderer) {
 }
 
 function checkcollision() {
+  let fl=false;
   bbox.setFromObject(dash);
   if (cubes) {
-    cubes.forEach((cube, ndx) => {
+    cubes.every((cube, ndx) => {
       bbox1.setFromObject(cube);
       if (bbox.intersectsBox(bbox1)) {
-        sound.stop();
-        crash.play();
        
-       // console.log("Collision......");
-        cont = false;
-        crashed.style.display="flex";
-        gamecanvas.classList.add("blur")
+        fl=true;
+        return false
       }
+      else{
+        return true
+      }
+      
     });
   }
   if(bbox.min.x<-15||bbox.max.x>15)
   {
-    
+    fl=true;  
+
+  }
+  if(fl==true){
     sound.stop();
     crash.play();
     cont = false;
     crashed.style.display="flex";
+    clearInterval(intervalID);
+    bl=0;
+    gamecanvas.style.removeProperty('filter');
     gamecanvas.classList.add("blur")
-
+    console.log(gamecanvas)
+    speed_step=0.5;
   }
 }
 
@@ -550,7 +561,7 @@ function render(time) {
     //If no key pressed,bring steering to normal position
     steering.rotation.z /= 1.1;
     //console.log("im here")
-    if (step < 0.5) {
+    if (step < speed_step) {
       step += 0.01;
     }
     resetplay = true;
@@ -609,9 +620,9 @@ function render(time) {
   //simulatemode();
   // controls.update();
 
-  composer1.render();
+  //composer1.render();
   renderer.clear();
-  composer.render();
+  //composer.render();
   renderer.render(scene, camera);
   
   renderer.clearDepth();
@@ -624,14 +635,17 @@ function render(time) {
   }
 }
 
-
+var bl=0;
 function myCallback(a, b)
 {
+  bl+=1;
  // Your code here
  // Parameters are purely optional.
  console.log("timer calling")
- composer.addPass(hblur);
- composer.addPass(vblur);
+ //composer.addPass(hblur);
+ //composer.addPass(vblur);
+ gamecanvas.style.filter=`blur(${bl}px)`
+ speed_step+=0.1;
 }
 
 
@@ -640,7 +654,7 @@ function main() {
 
   //clearInterval(intervalID);
   
-  var intervalID = setInterval(myCallback, 2000, 'Parameter 1', 'Parameter 2');
+  intervalID = setInterval(myCallback, 2000, 'Parameter 1', 'Parameter 2');
 
   requestAnimationFrame(render);
 }
@@ -650,16 +664,16 @@ function main() {
 const resetbtn = document.getElementById("reset");
 const gamecanvas = document.getElementById("c");
 const playbtn = document.getElementById("play");
-const stopbtn = document.getElementById("stop");
-const continuebtn = document.getElementById("continue");
+//const stopbtn = document.getElementById("stop");
+//const continuebtn = document.getElementById("continue");
 const crashed=document.getElementById("crashed");
 const splash=document.getElementById("splash");
 const enterbutton=document.getElementById("enterbutton");
 var ping = new Audio("../sounds/enterbutton.ogg");
 
 playbtn.addEventListener("click", () => {
-  console.log("reset clicked");
-
+  //console.log("reset clicked");
+  ping.play();
   sound.play();
   gamecanvas.classList.remove("blur");
   main();
@@ -669,8 +683,12 @@ playbtn.addEventListener("mouseenter", () => {
   ping.play();
   console.log("mouse hoverrr")
 });
+resetbtn.addEventListener("mouseenter", () => {
+  ping.play();
+  console.log("mouse hoverrr")
+});
 
-stopbtn.addEventListener("click", () => {
+/*stopbtn.addEventListener("click", () => {
   console.log("stop clicked");
   sound.pause();
   cont = false;
@@ -681,12 +699,17 @@ continuebtn.addEventListener("click", () => {
   cont = true;
   sound.play();
   main();
-});
+});*/
 
 resetbtn.addEventListener("click", () => {
-  console.log("reset clicked");
+ // console.log("reset clicked");
+ ping.play();
   reset();
+  cont = true;
   sound.stop();
+  sound.play();
+  gamecanvas.classList.remove("blur");
+  main();
  
 });
 
