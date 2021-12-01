@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <section class="interactive">
+        <div class="play_container">
+            <canvas id="c"></canvas>
+            <button id="reset" class="reset">
+                Reset
+            </button>
+            <button id="stop" class="stop">
+                Stop
+            </button>
+            <button id="continue" class="continue">
+                continue
+            </button>
+            <div id="crashed" class="crashed">
+                <img src="../static/warning.webp" alt="warning crash">
+                <span>Crashed!</span>
+            </div>
+            <div id="splash" class="splash">
+                <img src="../static/splash.svg" alt="splash">
+                <button id="play" class="play">
+                    Play Now
+                </button>
+                <audio id="enterbutton">
+                    <source src="../sounds/enterbutton.ogg"/>
+                </audio>
+            </div>
+            
+        </div>
+        </div>
+    </section>
+    <script type="module" src="../js/game.js"></script>
+</body>
+</html>

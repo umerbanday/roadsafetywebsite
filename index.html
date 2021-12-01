@@ -23,15 +23,13 @@
             <img src="static/transport_logo.jpg" alt="Transport Department Logo">
         </a>
         <div class="main_hashtag_container">
-            <a href="#" class="top_hashtag_container">
-
-                <h1 class="top_hashtag">#SadakSurakshitDilliSurakshit</h1>
-
-            </a>
+            <a class="twitter-hashtag-button  top_hashtag_container" data-size="large"
+  href="https://twitter.com/intent/tweet?button_hashtag=SadakSurakshitDilliSurakshit">
+Tweet #SadakSurakshitDilliSurakshit</a>
         </div>
 
         <div id="playbtn"class="play_button">        
-                <h1 class="top_hashtag">Play Simulation</h1>
+                <h1 class="top_hashtag"><a href="/simulator">Play Simulation</a> </h1>
         </div>
         <!--<a href="#" class="bloomberg_logo">
                 <img src="static/bloomberg_logo.jpg" alt="Bloomberg Logo">
@@ -48,11 +46,10 @@
             <nav>
                 <img id="menu_close" src="static/cros.svg" alt="close icon" class="menu_close"  >
                 <ul>
-                    <li><a href="">VIDEOS</a></li>
-                    <li><a href="">CAMPAIGN</a></li>
-                    <li><a href="">INFORMATION BANK</a></li>
-                    <li><a href="">SOCIAL MEDIA</a></li>
-                    <li><a href="">HELPLINE</a></li>
+                    <li><a href="#testimonials">VICTIM TESTIMONIALS</a></li>
+                    <li><a href="#about_sec">ABOUT CAMPAIGN</a></li>
+                    <li><a href="#social">SOCIAL MEDIA</a></li>
+                    <li><a href="#learn">LEARN TO STAY SAFE</a></li>
                 </ul>
             </nav>
         </div>
@@ -64,7 +61,7 @@
         </div>
     </section>
 
-    <section class="testimonial_slideshow_container">
+    <section id="testimonials" class="testimonial_slideshow_container">
 
         <!-- Slideshow container -->
         <div class="slideshow-container">
@@ -112,7 +109,7 @@
     </section>
 
 
-    <section class="upper_tab_view">
+    <section id="about_sec" class="upper_tab_view">
         <div class="container upper_tab">
             <div class="tab upper_tab">
                 <button class="tablinks" onclick="openTab(event, 'about')" id="defaultOpen">ABOUT CAMPAIGN</button>
@@ -122,8 +119,20 @@
             <!-- Tab content -->
             <div id="about" class="tabcontent">
                 <h3>ABOUT</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                    labore et dolore magna aliqua.</p>
+                <p>#SadakSurakshitDilliSurakshit</p>
+                <p>
+                    Every year hundreds of thousands are killed in our country, in road crashes. In the national capital alone, 1463 people died in road crashes in 2019 - despite a lockdown to contain the pandemic. 
+                    
+                </p>  <p>   These deaths are preventable! Apart from other safety measures a sustained awareness campaign, to get people acquainted with the road safety measures and the perils of not adhering to them is the need of the hour.
+                    
+                </p>  <p>     And that is what we, the Transport Department, Government of NCT of Delhi, have set out to do through our sustained communication strategy. 
+                    
+                </p>  <p>    The aim is to reach out to as many people in Delhi, and across India, and spread awareness about how overspeeding, not using safety gear (including helmets and seat belts), drunk driving, and use of mobile phones while driving are responsible for almost all road crashes. 
+                    
+                </p>  <p>    The social media campaign, #SadakSurakshitDilliSurakshit, has been designed and is being carried out to create this much-needed awareness in the general public. Let us work together towards achieving the “zero-deaths” goal we have set for ourselves. 
+                    
+                </p>  <p>     It is your Delhi, let us make the roads safer! 
+                    .</p>
             </div>
 
             <div id="message" class="tabcontent">
@@ -135,7 +144,7 @@
         </div>
     </section>
 
-    <section class="social_media">
+    <section id="social" class="social_media">
             <div class="heading">
                 <h1>Check out on Social Media:</h1>
             </div>
@@ -146,7 +155,7 @@
                     <h1>TWITTER</h1>
                 </div>
                     <div class="timeline">
-                        <a class="twitter-timeline" data-width="500" data-height="500" href="https://twitter.com/TwitterDev?ref_src=twsrc%5Etfw">Tweets by TwitterDev</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+                        <a class="twitter-timeline" data-width="500" data-height="500" href="https://twitter.com/delhiroadsafety?ref_src=twsrc%5Etfw">Tweets by TwitterDev</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
                     </div>
                 </div>
                 <div class="facebook_timeline">
@@ -159,7 +168,7 @@
             </div>
     </section>
 
-    <section class="lower_tab_view">
+    <section id="learn" class="lower_tab_view">
         <div class="container lower_tab">
             <div class="tab lower_tab">
                 <button class="tablinks" onclick="openTab(event, 'initiatives')" id="defaultOpen_LOWER">ROAD SAFETY INITIATIVES</button>
@@ -191,24 +200,7 @@
         </div>
     </section>
 
-    <section class="interactive">
-        <div class="play_container">
-            <button id="play" class="play">
-                Play
-            </button>
-            <button id="reset" class="reset">
-                Reset
-            </button>
-            <button id="stop" class="stop">
-                Stop
-            </button>
-            <button id="continue" class="continue">
-                continue
-            </button>
-            <canvas id="c"></canvas>
-        </div>
-        </div>
-    </section>
+  
 
     <section class="helpline">
         <div class="container">
@@ -223,8 +215,23 @@
             </h1>
         </div>
     </section>
-    <script type="module" src="js/game.js"></script>
     <script src="js/scripts.js"></script>
+    <script>window.twttr = (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0],
+          t = window.twttr || {};
+        if (d.getElementById(id)) return t;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "https://platform.twitter.com/widgets.js";
+        fjs.parentNode.insertBefore(js, fjs);
+      
+        t._e = [];
+        t.ready = function(f) {
+          t._e.push(f);
+        };
+      
+        return t;
+      }(document, "script", "twitter-wjs"));</script>
 
 </body>
 

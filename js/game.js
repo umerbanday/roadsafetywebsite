@@ -1,5 +1,6 @@
 import * as THREE from "https://cdn.skypack.dev/three@0.132.2";
 import { GLTFLoader } from "https://cdn.skypack.dev/three@0.132.2/examples/jsm/loaders/GLTFLoader.js";
+import { SVGLoader } from "https://cdn.skypack.dev/three@0.132.2/examples/jsm/loaders/SVGLoader.js";
 import { EffectComposer } from "https://cdn.skypack.dev/three@0.132.2/examples/jsm/postprocessing/EffectComposer.js";
 import { RenderPass } from "https://cdn.skypack.dev/three@0.132.2/examples/jsm/postprocessing/RenderPass.js";
 import { BloomPass } from "https://cdn.skypack.dev/three@0.132.2/examples/jsm/postprocessing/BloomPass.js";
@@ -7,15 +8,21 @@ import { FilmPass } from "https://cdn.skypack.dev/three@0.132.2/examples/jsm/pos
 import { HorizontalBlurShader } from "https://cdn.skypack.dev/three@0.132.2/examples/jsm/shaders/HorizontalBlurShader.js";
 import { VerticalBlurShader } from "https://cdn.skypack.dev/three@0.132.2/examples/jsm/shaders/VerticalBlurShader.js";
 import { ShaderPass } from "https://cdn.skypack.dev/three@0.132.2/examples/jsm/postprocessing/ShaderPass.js";
+import { OrbitControls } from "https://cdn.skypack.dev/three@0.132.2/examples/jsm/controls/OrbitControls.js";
 
 //setup the loader
 const manager = new THREE.LoadingManager();
 manager.onLoad = init;
 const models = {
-  car: { url: "static/carmod.gltf", gltf: null },
+  car: { url: "../static/carmod.gltf", gltf: null },
+  road: { url: "../static/roadnew.gltf", gltf: null },
 };
 
+var mode="drunk"
+
 const gltfLoader = new GLTFLoader(manager);
+//SVG Loader
+const loader = new SVGLoader(manager);
 
 //load function
 function load() {
@@ -23,30 +30,153 @@ function load() {
     gltfLoader.load(model.url, (gltf) => {
       model.gltf = gltf;
     });
+
+    loader.load(
+      // resource URL
+      "../static/steering.svg",
+      // called when the resource is loaded
+      function (data) {
+        const paths = data.paths;
+        steering = new THREE.Object3D();
+
+        for (let i = 0; i < paths.length; i++) {
+          const path = paths[i];
+
+          const material = new THREE.MeshBasicMaterial({
+            color: path.color,
+            side: THREE.DoubleSide,
+            depthWrite: false,
+          });
+
+          const shapes = SVGLoader.createShapes(path);
+
+          for (let j = 0; j < shapes.length; j++) {
+            const shape = shapes[j];
+            const geometry = new THREE.ShapeGeometry(shape);
+            const mesh = new THREE.Mesh(geometry, material);
+            mesh.renderOrder = 999;
+            steering.add(mesh);
+          }
+        }
+
+        //calculate bounds of object
+        var box = new THREE.Box3().setFromObject(steering);
+        var center = new THREE.Vector3();
+        box.getCenter(center);
+
+        //Center the object geometry
+        steering.children.forEach((item) => {
+          item.geometry.translate(-center.x, -center.y, 0);
+        });
+
+        steering.scale.set(0.0027, 0.0027, 0.0027);
+        steering.rotation.x = 3.14;
+        steering.rotation.y = 3.14;
+
+        steering.position.z += 0.01;
+        steering.position.y += 2.5;
+        steering.position.x -= 1.33;
+
+        //steering.renderOrder = 999;
+
+        //steering.onBeforeRender = function( renderer ) { renderer.clearDepth(); };
+      },
+      // called when loading is in progresses
+      function (xhr) {
+        console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
+      },
+      // called when loading has errors
+      function (error) {
+        console.log(error);
+      }
+    );
+
+    loader.load(
+      // resource URL
+      "../static/cardash.svg",
+      // called when the resource is loaded
+      function (data) {
+        const paths = data.paths;
+        dash = new THREE.Object3D();
+
+        for (let i = 0; i < paths.length; i++) {
+          const path = paths[i];
+
+          const material = new THREE.MeshBasicMaterial({
+            color: path.color,
+            side: THREE.DoubleSide,
+            depthWrite: false,
+          });
+
+          const shapes = SVGLoader.createShapes(path);
+
+          for (let j = 0; j < shapes.length; j++) {
+            const shape = shapes[j];
+            const geometry = new THREE.ShapeGeometry(shape);
+            const mesh = new THREE.Mesh(geometry, material);
+            dash.add(mesh);
+          }
+        }
+
+        //calculate bounds of object
+        var box = new THREE.Box3().setFromObject(dash);
+        var center = new THREE.Vector3();
+        box.getCenter(center);
+
+        //Center the object geometry
+        dash.children.forEach((item) => {
+          item.geometry.translate(-center.x, -center.y, 0);
+        });
+
+        dash.scale.set(0.0027, 0.0027, 1);
+        dash.rotation.z = 3.14;
+        dash.rotation.y = 3.14;
+
+
+        dash.position.z = 0.0;
+        dash.position.y = 2.8;
+        dash.position.x = -0.5;
+        //
+      },
+      // called when loading is in progresses
+      function (xhr) {
+        console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
+      },
+      // called when loading has errors
+      function (error) {
+        console.log(error);
+      }
+    );
+
+    
   }
 }
 
 //Declare global variables
 const init_pos = [
-  [0, -50],
-  [-5, -40],
-  [5, -20],
-  [7, -10],
+  [-5, -340],
+  [5, -300],
+  [5, -250],
+  [-5, -200],
 ];
 
 var canvas;
 var renderer;
 
 var camera;
-const fov = 75;
+var fov = 130;
 const aspect = 2;
 const near = 0.1;
 const far = 1000;
 
-var scene;
+var scene = new THREE.Scene();
+var top = new THREE.Scene();
 
 var car;
+var dash;
+var steering;
 var cubes;
+var roads = [];
 
 var light;
 const color = 0xffffff;
@@ -56,10 +186,10 @@ var amlight;
 
 var roadgeometry;
 var road;
-var roadm;
+var roadbound;
 var cont = true;
 
-var keyDown;
+var keyDown = {};
 var keyMap = {
   37: "left",
   38: "up",
@@ -68,23 +198,61 @@ var keyMap = {
 };
 
 var composer;
+var composer1;
 var vblur;
 var hblur;
 
 var bbox;
 var bbox1;
+var controls;
+var last = 20;
 
+var sound;
+var crash;
+var brake;
+
+var accel = 0;
+var step = 0;
+
+var resetplay = true;
 //init function called after loading completes
 function init() {
   console.log("modelloaded");
 
   canvas = document.querySelector("#c");
+  
+ 
   renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
   renderer.setClearColor(0xffffff, 0);
+  renderer.autoClear = false;
+
+  const temp = renderer.domElement;
+  let aspect= temp.clientHeight/temp.clientWidth
+  console.log(aspect)
+  if(aspect<=0.35){
+    fov=35
+  }else if(aspect>0.35&&aspect<=0.4){
+    fov =55
+  }else if(aspect>0.4&&aspect<=0.55){
+    fov =70
+  }
+  else if(aspect>0.55&&aspect<=0.65){
+    fov =80
+  }
+  else if(aspect>0.65&&aspect<=0.75){
+    fov =90
+  }
+  else if(aspect>0.75&&aspect<=1) {
+    fov =100
+  }else if(aspect>1&&aspect<=1.3) {
+    fov =115
+  }if(aspect>1.3) {
+    fov =120
+  }
 
   camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-  scene = new THREE.Scene();
 
+  // controls = new OrbitControls( camera, renderer.domElement );
   light = new THREE.DirectionalLight(color, intensity);
   light.position.set(-1, 2, 4);
   scene.add(light);
@@ -93,37 +261,53 @@ function init() {
   scene.add(amlight);
 
   car = models.car.gltf.scene;
+  road = models.road.gltf.scene;
+  console.log(car);
+
   bbox = new THREE.Box3();
   bbox1 = new THREE.Box3();
 
+  // load a SVG resource
+
+  top.add(dash);
+  top.add(steering);
+
+  //scene.add(car);
   cubes = [
-    makeInstance(car, 0x44aa88, init_pos[0][0], init_pos[0][1]),
-    makeInstance(car, 0x8844aa, init_pos[1][0], init_pos[1][1]),
-    makeInstance(car, 0x8844aa, init_pos[2][0], init_pos[2][1]),
-    makeInstance(car, 0x8844aa, init_pos[3][0], init_pos[3][1]),
+    makeInstance(car, 0x44aa88, init_pos[0][0], init_pos[0][1], false),
+    makeInstance(car, 0x8844aa, init_pos[1][0], init_pos[1][1], true),
+    makeInstance(car, 0xd00ba6, init_pos[2][0], init_pos[2][1], true),
+    makeInstance(car, 0x343f03, init_pos[3][0], init_pos[3][1], false),
   ];
-  scene.add(car);
+  bbox1.setFromObject(road);
+  roadbound = bbox1.max.z;
 
-  roadgeometry = new THREE.PlaneGeometry(20, 200);
-  roadm = new THREE.MeshBasicMaterial({
-    color: 0x808080,
-    side: THREE.DoubleSide,
-  });
+  for (let i = 0; i <= last; i++) {
+    roads.push(makeInstance(road, null, 0, -roadbound *2* i));
+  }
 
-  road = new THREE.Mesh(roadgeometry, roadm);
-  road.rotateX(-3.14 / 2);
-  scene.add(road);
+  console.log(roads);
+
+  //scene.add(road);
 
   document.addEventListener("keydown", onDocumentKey, false);
   document.addEventListener("keyup", onDocumentKey, false);
 
   //call the initial reset
   reset();
+
+  gamecanvas.classList.add("blur")
+
   const canv = renderer.domElement;
 
   composer = new EffectComposer(renderer);
 
   composer.addPass(new RenderPass(scene, camera));
+
+  composer1 = new EffectComposer(renderer);
+
+  composer1.addPass(new RenderPass(top, camera));
+
 
   hblur = new ShaderPass(HorizontalBlurShader);
   console.log(hblur.uniforms + "" + canv.clientWidth);
@@ -138,14 +322,16 @@ function init() {
   //vblur.uniforms.v=1/canv.clientHeight;
   vblur.renderToScreen = true;
 
-  /* const bloomPass = new BloomPass(
-    1,    // strength
+   const bloomPass = new BloomPass(
+    10,    // strength
     25,   // kernel size
     4,    // sigma ?
     256,  // blur render target resolution
 );
-composer.addPass(bloomPass);
+bloomPass.renderToScreen = true;
+//composer1.addPass(vblur);
 
+/*
 const filmPass = new FilmPass(
   0.35,   // noise intensity
   0.025,  // scanline intensity
@@ -161,8 +347,52 @@ composer.addPass(filmPass); */
     camera.updateProjectionMatrix();
   }
 
+  //Sounds
+
+  const listener = new THREE.AudioListener();
+  camera.add(listener);
+
+  // create a global audio source
+  sound = new THREE.Audio(listener);
+  crash = new THREE.Audio(listener);
+  brake = new THREE.Audio(listener);
+
+  // load a sound and set it as the Audio object's buffer
+  const audioLoader = new THREE.AudioLoader();
+
+  audioLoader.load("../sounds/carloop.ogg", function (buffer) {
+    sound.setBuffer(buffer);
+    sound.setLoop(true);
+    sound.setVolume(0.5);
+  });
+
+  audioLoader.load("../sounds/crash.ogg", function (buffer) {
+    crash.setBuffer(buffer);
+    crash.setLoop(false);
+    crash.setVolume(0.8);
+  });
+
+  audioLoader.load("../sounds/brake.ogg", function (buffer) {
+    brake.setBuffer(buffer);
+    brake.setLoop(false);
+    brake.setVolume(0.5);
+  });
+  sound.onEnded = () => {
+    console.log("Sound ended");
+  };
+
+  //renderer.clear();
+ // composer.render();
+
+
   //render initial frame
+  renderer.clear();
   renderer.render(scene, camera);
+  
+
+  renderer.clearDepth();
+  //composer1.render();
+  renderer.render(top, camera);
 }
 
 //function to reset the game
@@ -172,47 +402,67 @@ function reset() {
   camera.position.x = -0.5;
   camera.lookAt(new THREE.Vector3(-0.5, 3.1, 0));
 
-  car.position.z = 0.0;
-  car.position.y = 0.0;
-  car.position.x = 0.0;
+  //reset car position
+  dash.position.x = -0.5;
+  steering.position.x = -1.33;
 
+  //reset steering whell
+  steering.rotation.z = 0;
+
+  //reset opposite cars
   if (cubes) {
     cubes.forEach((cube, ndx) => {
+      // cube.material.color.set("blue");
       cube.position.x = init_pos[ndx][0];
       cube.position.z = init_pos[ndx][1];
     });
   }
+  crashed.style.display="none";
+  if(gamecanvas.classList.contains("blur")){
+    gamecanvas.classList.remove("blur")
+  }
+  
+
 }
 
 //function to register key events
 function onDocumentKey(event) {
   console.log(event.type);
-  keyDown = {};
+
   var keyCode = event.which;
   if (event.type == "keydown") {
     keyDown[keyMap[keyCode]] = true;
   } else if (event.type == "keyup") {
     keyDown[keyMap[keyCode]] = false;
   }
-
-  if (car) {
-    if (keyCode == 37) {
-    } else if (keyCode == 39) {
-    } else if (keyCode == 32) {
-      car.position.set(0, 0, 0);
-    }
-  }
 }
 
 //function to make instances of the geometry
-function makeInstance(geo, color, x, z) {
-  const temp = new THREE.Object3D();
-  temp.add(geo.clone());
-  temp.rotateY(3.14);
-  temp.position.x = x;
+function makeInstance(geo, color, x, z, rev) {
+  var temp;
+  //This does not create a deep clone i.e materials are not cloned by value but by ref
+  temp = geo.clone();
+
+  //If color argument is passed, i.e we need diff colors for diff instances, we need to clone the materials too.
+  //First we check if color is passed
+  if (color != null) {
+    //  clone materials too
+    temp.traverse(function (object) {
+      if (object.isMesh) {
+        object.material = object.material.clone();
+      }
+    });
+    //set the color of body
+    temp.children[0].children[0].material.color.setHex(color);
+    if (rev) {
+      temp.rotation.y = 3.14;
+    }
+
+    temp.position.x = x;
+  }
+
   temp.position.z = z;
   scene.add(temp);
-
   return temp;
 }
 
@@ -229,21 +479,86 @@ function resizeRendererToDisplaySize(renderer) {
 }
 
 function checkcollision() {
-  bbox.setFromObject(car);
+  bbox.setFromObject(dash);
   if (cubes) {
     cubes.forEach((cube, ndx) => {
       bbox1.setFromObject(cube);
       if (bbox.intersectsBox(bbox1)) {
-        console.log("Collision......");
+        sound.stop();
+        crash.play();
+       
+       // console.log("Collision......");
         cont = false;
+        crashed.style.display="flex";
+        gamecanvas.classList.add("blur")
       }
     });
+  }
+  if(bbox.min.x<-15||bbox.max.x>15)
+  {
+    
+    sound.stop();
+    crash.play();
+    cont = false;
+    crashed.style.display="flex";
+    gamecanvas.classList.add("blur")
+
   }
 }
 
 //Game loop function
 function render(time) {
   let xSpeed = 0.1;
+
+  //controls
+
+  if (keyDown["up"]) {
+    composer.addPass(hblur);
+    composer.addPass(vblur);
+  } else if (keyDown["down"]) {
+    if (step >= 0) {
+      step -= 0.01;
+    } else {
+      step = 0;
+    }
+    if (resetplay) {
+      brake.play();
+    }
+    resetplay = false;
+
+    //composer.removePass(hblur);
+    //composer.removePass(vblur);
+  } else if (keyDown["left"]) {
+    //Move car
+    dash.position.x -= xSpeed * steering.rotation.z;
+    //Rotate steering
+    camera.position.x -= xSpeed * steering.rotation.z;
+
+    steering.position.x -= xSpeed * steering.rotation.z;
+    //Steering rotation limit
+    if (steering.rotation.z < 3.14) {
+      steering.rotation.z += 0.1;
+    }
+  } else if (keyDown["right"]) {
+    dash.position.x -= xSpeed * steering.rotation.z;
+    camera.position.x -= xSpeed * steering.rotation.z;
+    steering.position.x -= xSpeed * steering.rotation.z;
+    if (steering.rotation.z > -3.14) {
+      steering.rotation.z -= 0.1;
+    }
+  } else {
+    //If no key pressed,bring steering to normal position
+    steering.rotation.z /= 1.1;
+    //console.log("im here")
+    if (step < 0.5) {
+      step += 0.01;
+    }
+    resetplay = true;
+  }
+
+  //sound.setVolume(step * 2);
+  //console.log(step);
+
   time *= 0.001; // convert time to seconds
   if (resizeRendererToDisplaySize(renderer)) {
     const canvas = renderer.domElement;
@@ -254,17 +569,36 @@ function render(time) {
   //Advacnce the cars
   if (cubes) {
     cubes.forEach((cube, ndx) => {
-      const speed = 1 + ndx * 0.1;
-      const add = speed;
-      cube.position.z = cube.position.z + add / 10;
+      //const speed = 1 + ndx * 0.1;
+      const add = 2;
 
-      //cube.children[0].children[1].rotation.x+=0.1
-      //cube.children[0].children[2].rotation.x+=0.1
-      //cube.children[0].children[3].rotation.x+=0.1
-      //cube.children[0].children[4].rotation.x+=0.1
-      //console.log(cube)
+      if (cube.rotation.y == 3.14) {
+        cube.position.z = cube.position.z + 2 * step + 1;
+      } else {
+        cube.position.z = cube.position.z + 2 * step - 0.2;
+      }
+
       if (cube.position.z > 3) {
-        cube.position.z = -50;
+        cube.position.z = -340;
+      }
+    });
+  }
+
+  if (roads) {
+    // advance all road blocks
+
+    roads.forEach((road, ndx) => {
+      road.position.z = road.position.z + 2 * step;
+    });
+
+    // check if any block crossed limits
+    roads.forEach((road, ndx) => {
+      if (road.position.z >= roadbound * 2) {
+        //console.log("Old position is "+road.position.z)
+
+        road.position.z = roads[last].position.z - roadbound * 2;
+        //console.log("New position is "+road.position.z)
+        last = ndx;
       }
     });
   }
@@ -272,85 +606,95 @@ function render(time) {
   //Check collision
   checkcollision();
 
-  //controls
-  if (keyDown) {
-    if (keyDown["up"]) {
-      composer.addPass(hblur);
-      composer.addPass(vblur);
-    } else if (keyDown["down"]) {
-      // down code
+  //simulatemode();
+  // controls.update();
 
-      composer.removePass(hblur);
-      composer.removePass(vblur);
-    } else if (keyDown["left"]) {
-      car.position.x -= xSpeed * car.children[1].rotation.z;
-      camera.position.x -= xSpeed * car.children[1].rotation.z;
-      console.log(bbox);
-      if (car.children[1].rotation.z < 3.14) {
-        car.children[1].rotation.z += 0.1;
-      }
-      // car.rotation.y= car.children[1].rotation.z/4;
-      console.log(keyDown);
-    } else if (keyDown["right"]) {
-      car.position.x -= xSpeed * car.children[1].rotation.z;
-      camera.position.x -= xSpeed * car.children[1].rotation.z;
-      if (car.children[1].rotation.z > -3.14) {
-        car.children[1].rotation.z -= 0.1;
-      }
-      //car.rotation.y= car.children[1].rotation.z/4;
-      console.log(keyDown);
-    } else {
-      car.children[1].rotation.z /= 1.1;
-      //car.rotation.y= car.children[1].rotation.z/4;
-    }
-  }
-
-  renderer.render(scene, camera);
+  composer1.render();
+  renderer.clear();
   composer.render();
+  renderer.render(scene, camera);
+  
+  renderer.clearDepth();
+  
+  renderer.render(top, camera);
+  
 
   if (cont == true) {
     requestAnimationFrame(render);
   }
 }
 
+
+function myCallback(a, b)
+{
+ // Your code here
+ // Parameters are purely optional.
+ console.log("timer calling")
+ composer.addPass(hblur);
+ composer.addPass(vblur);
+}
+
+
 //Start the game loop
 function main() {
+
+  //clearInterval(intervalID);
+  
+  var intervalID = setInterval(myCallback, 2000, 'Parameter 1', 'Parameter 2');
+
   requestAnimationFrame(render);
 }
 
 //Html buttons and controls
-const gamebtn = document.getElementById("playbtn");
+//const gamebtn = document.getElementById("playbtn");
 const resetbtn = document.getElementById("reset");
 const gamecanvas = document.getElementById("c");
 const playbtn = document.getElementById("play");
 const stopbtn = document.getElementById("stop");
 const continuebtn = document.getElementById("continue");
+const crashed=document.getElementById("crashed");
+const splash=document.getElementById("splash");
+const enterbutton=document.getElementById("enterbutton");
+var ping = new Audio("../sounds/enterbutton.ogg");
 
 playbtn.addEventListener("click", () => {
   console.log("reset clicked");
+
+  sound.play();
+  gamecanvas.classList.remove("blur");
   main();
+  splash.style.display="none"
+});
+playbtn.addEventListener("mouseenter", () => {
+  ping.play();
+  console.log("mouse hoverrr")
 });
 
 stopbtn.addEventListener("click", () => {
   console.log("stop clicked");
+  sound.pause();
   cont = false;
 });
 
 continuebtn.addEventListener("click", () => {
   console.log("continue clicked");
   cont = true;
+  sound.play();
   main();
 });
 
 resetbtn.addEventListener("click", () => {
   console.log("reset clicked");
   reset();
-  main();
+  sound.stop();
+ 
 });
 
-gamebtn.addEventListener("click", () => {
+/*gamebtn.addEventListener("click", () => {
   console.log("game clicked");
   gamecanvas.style.display = "block";
   window.scrollTo(0, 3000);
   load();
-});
+});*/
+
+load();

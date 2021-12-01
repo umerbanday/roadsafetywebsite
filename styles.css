@@ -5,12 +5,30 @@ body {
   margin: 0;
   height: 100%;
   font-family:'Roboto';
+
+    scroll-behavior: smooth;
+  
   
 }
+
+.blur{
+  -webkit-filter: blur(20px);
+  -moz-filter: blur(20px);
+  -o-filter: blur(20px);
+  -ms-filter: blur(20px);
+  filter: blur(20px);
+}
+
+.interactive,.play_container {
+  width:100%;
+  height:100%;
+}
+
 #c {
-  display: none;
+  display: block;
   width: 100%;
   height: 100%;
+  
   /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#41719b+0,7eaed6+50,efce81+100 */
   background: #41719b; /* Old browsers */
   background: -moz-linear-gradient(
@@ -39,11 +57,7 @@ body {
   position: relative;
 }
 
-.play{
-  position: absolute;
-  top:50px;
-  left:50px;
-}
+
 
 .reset{
   position: absolute;
@@ -62,6 +76,49 @@ body {
   top:50px;
   right:250px;
 }
+
+.crashed{
+  display:none;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  left:50%;
+  top:50%;
+  transform: translate(-50%, -50%);
+}
+
+.crashed span{
+  font-size: 4em;
+  color:white
+}
+
+.splash{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  width:30%;
+ 
+  left:50%;
+  top:50%;
+  transform: translate(-50%, -50%);
+}
+.play{
+  margin:1em;
+  font-size: 2em;
+  border-radius: 1em;
+  padding:0.5em;
+  
+  background-color: green;
+  color: white;
+}
+.play:hover{
+
+ 
+  background-color: darkgreen;
+
+}
+
 
 
 
@@ -98,7 +155,8 @@ body {
 .main_hashtag_container{
   order:3;
   width:100%;
-  background-color: white;
+  margin:1em;
+  background-color: #E4E5E5;
   display:flex;
   justify-content: center;
   align-items: center;
@@ -112,6 +170,12 @@ body {
   display:flex;
   justify-content: center;
   align-items: center;
+
+}
+
+.play_button a{
+  text-decoration: none;
+  color: white;
 
 }
 
@@ -499,6 +563,7 @@ nav li{
   
   }
   
+  
   .play_button:hover{
     background-color: darkorange;
   }
@@ -520,6 +585,7 @@ nav li{
     justify-content: center;
    
   }
+
   
   .top_hashtag_container:hover{
     background-color:darkred;
@@ -537,7 +603,7 @@ nav li{
   /* for navbar */
   .navbar{
     display: block;
-    background-color: darkred;
+    background-color: red;
     width:unset;
     height:unset;
     position: unset;
