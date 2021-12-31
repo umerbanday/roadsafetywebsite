@@ -1,7 +1,7 @@
 
 //FOR TABS
 
-function openTab(evt, name) {
+function openTab(evt, name,fromTop) {
     // Declare all variables
     var i, tabcontent, tablinks;
     console.log(evt.target.parentElement.classList[1])
@@ -13,6 +13,8 @@ function openTab(evt, name) {
      {
        //Check if the parent class of triggering button aand the conmtent are same to separate upper and lower tabs
        if(evt.target.parentElement.classList[1]==tabcontent[i].parentElement.classList[1]){
+        tabcontent[i].style.display = "none";
+       }else if(fromTop==true){
         tabcontent[i].style.display = "none";
        }
       
@@ -35,29 +37,30 @@ function openTab(evt, name) {
   } 
 
   // Get the element with id="defaultOpen" and click on it
-  document.getElementById("defaultOpen").click();
+ // document.getElementById("defaultOpen").click();
   document.getElementById("defaultOpen_LOWER").click();
 
 
   //FOR SLIDESHOW
 
   var slideIndex = 1;
-showSlides(slideIndex);
+showSlides(slideIndex,'top');
+showSlides(slideIndex,'bottom');
 
 // Next/previous controls
-function plusSlides(n) {
-  showSlides(slideIndex += n);
+function plusSlides(n,source) {
+  showSlides(slideIndex += n,source);
 }
 
 // Thumbnail image controls
-function currentSlide(n) {
-  showSlides(slideIndex = n);
+function currentSlide(n,source) {
+  showSlides(slideIndex = n,source);
 }
 
-function showSlides(n) {
+function showSlides(n,source) {
   var i;
-  var slides = document.getElementsByClassName("mySlides");
-  var dots = document.getElementsByClassName("dot");
+  var slides = document.getElementsByClassName("mySlides"+"_"+source);
+  var dots = document.getElementsByClassName("dot"+"_"+source);
   if (n > slides.length) {slideIndex = 1}
   if (n < 1) {slideIndex = slides.length}
   for (i = 0; i < slides.length; i++) {

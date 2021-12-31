@@ -47,9 +47,9 @@
                 <img id="menu_close" src="static/cros.svg" alt="close icon" class="menu_close">
                 <ul>
                     <li><a href="#testimonials">VICTIM TESTIMONIALS</a></li>
-                    <li><a href="#about_sec">ABOUT CAMPAIGN</a></li>
                     <li><a href="#social">SOCIAL MEDIA</a></li>
-                    <li><a href="#learn">LEARN TO STAY SAFE</a></li>
+                    <li><a href="#learn" onclick="openTab(event,'learning',true)">LEARN TO BE SAFE</a></li>
+                    <li><a href="#learn" onclick="openTab(event,'media',true)">MEDIA MATERIAL</a></li>
                 </ul>
             </nav>
         </div>
@@ -67,44 +67,64 @@
         <div class="slideshow-container">
 
             <!-- Full-width slides with number and caption text -->
-            <div class="mySlides fade">
+            <div class="mySlides fade mySlides_top">
                 <div class="numbertext">1 / 3</div>
-                <iframe src="https://www.youtube.com/embed/_NeEF1fwT4k?autoplay=0&mute=1&wmode=transparent"
-                    title="YouTube video player" frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen></iframe>
-                <div class="text">Caption one</div>
+
+                <div class="slideContent">
+                    <div class="videoBorder">
+                        <iframe src="https://www.youtube.com/embed/_NeEF1fwT4k?autoplay=0&mute=1&wmode=transparent"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    </div>
+                    <div class="text">
+                        <p class="quote">"My brother is paying the price because someone else was speeding"</p>
+                        <p class="description">Road crashes do not kill or maim just a person. They leave entire
+                            families in ruins for years and sometimes for generations. Watch
+                            what Prem Pradeep's family went through! Let’s make Delhi roads
+                            safer, together. #SadakSurakshitDilliSurakshit</p>
+                    </div>
+                </div>
+
             </div>
 
-            <div class="mySlides fade">
+            <div class="mySlides fade mySlides_top">
                 <div class="numbertext">2 / 3</div>
-                <iframe src="https://www.youtube.com/embed/_NeEF1fwT4k?autoplay=0&mute=1&wmode=transparent"
-                    title="YouTube video player" frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen></iframe>
-                <div class="text">Caption Two</div>
+                <div class="slideContent">
+                    <div class="videoBorder">
+                        <iframe src="https://www.youtube.com/embed/_NeEF1fwT4k?autoplay=0&mute=1&wmode=transparent"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    </div>
+                    <div class="text">Caption Two</div>
+                </div>
             </div>
 
-            <div class="mySlides fade">
+            <div class="mySlides fade mySlides_top">
                 <div class="numbertext">3 / 3</div>
-                <iframe src="https://www.youtube.com/embed/_NeEF1fwT4k?autoplay=0&mute=1&wmode=transparent"
-                    title="YouTube video player" frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen></iframe>
-                <div class="text">Caption Three</div>
+                <div class="slideContent">
+                    <div class="videoBorder">
+                        <iframe src="https://www.youtube.com/embed/_NeEF1fwT4k?autoplay=0&mute=1&wmode=transparent"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    </div>
+                    <div class="text">Caption Three</div>
+                </div>
             </div>
 
             <!-- Next and previous buttons -->
-            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            <a class="prev" onclick="plusSlides(-1,'top')">&#10094;</a>
+            <a class="next" onclick="plusSlides(1,'top')">&#10095;</a>
         </div>
         <br>
 
         <!-- The dots/circles -->
         <div style="text-align:center">
-            <span class="dot" onclick="currentSlide(1)"></span>
-            <span class="dot" onclick="currentSlide(2)"></span>
-            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot dot_top" onclick="currentSlide(1,'top')"></span>
+            <span class="dot dot_top" onclick="currentSlide(2,'top')"></span>
+            <span class="dot dot_top" onclick="currentSlide(3,'top')"></span>
         </div>
 
 
@@ -112,13 +132,14 @@
 
 
     <section id="about_sec" class="upper_tab_view">
+        <!--
         <div class="container upper_tab">
             <div class="tab upper_tab">
                 <button class="tablinks" onclick="openTab(event, 'about')" id="defaultOpen">ABOUT CAMPAIGN</button>
                 <button class="tablinks" onclick="openTab(event, 'message')">MESSAGE FROM TRANSPORT MINISTER</button>
             </div>
 
-            <!-- Tab content -->
+            
             <div id="about" class="tabcontent">
                 <h3>ABOUT</h3>
                 <p>#SadakSurakshitDilliSurakshit</p>
@@ -156,12 +177,13 @@
                     labore et dolore magna aliqua.</p>
             </div>
 
-        </div>
-    </section>
+        </div>-->
 
+    </section>
+    <div class="line"></div>
     <section id="social" class="social_media">
         <div class="heading">
-            <h1>Check out on Social Media:</h1>
+            <h1>CHECK US OUT ON SOCIAL MEDIA:</h1>
         </div>
         <div class="timelines">
             <div class="twitter_timeline">
@@ -192,33 +214,104 @@
 
     <section id="learn" class="lower_tab_view">
         <div class="container lower_tab">
+
             <div class="tab lower_tab">
-                <button class="tablinks" onclick="openTab(event, 'initiatives')" id="defaultOpen_LOWER">ROAD SAFETY
-                    INITIATIVES</button>
-                <button class="tablinks" onclick="openTab(event, 'legal')">LEGAL ENFORCEMENT</button>
-                <button class="tablinks" onclick="openTab(event, 'facts')">FACTSHEETS AND REPORTS</button>
+                <button class="tablinks" onclick="openTab(event, 'learning',false)" id="defaultOpen_LOWER">LEARN TO BE
+                    SAFE</button>
+                <button class="tablinks" onclick="openTab(event, 'media',false)">MEDIA MATERIAL</button>
             </div>
 
 
             <!-- Tab content -->
-            <div id="initiatives" class="tabcontent">
+            <div id="learning" class="tabcontent">
                 <h3>ROAD SAFETY INITIATIVES</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
                     labore et dolore magna aliqua.</p>
             </div>
 
-            <div id="legal" class="tabcontent">
-                <h3>LEGAL ENFORCEMENT</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                    labore et dolore magna aliqua.</p>
-            </div>
+            <div id="media" class="tabcontent">
+                <div class="media_material">
+                    <div class="media_material_text">
+                        <p>Welcome to the media section of the campaign #SadakSurakshitDilliSurakshit.
+                        The Transport Department, Delhi is set to join hands with you to make the roads of Delhi
+                        safer for everyone. Check this section to get the latest on the campaign.</p>
+                    <p>The campaign
+                        In the age of social media, the impact of visually appealing content can be relied
+                        upon to bring about a change in the behavior of people - through sustained
+                        dissemination of impactful data, emotional messages, and perils of irresponsible
+                        behavior over roads.</p>
+                    <p>The social media campaign has been designed around the WHO’s Safe Systems
+                        and/or Vision Zero approach vis-a-vis the road crashes, given the fact that media
+                        campaigns tend to be the most important tool of the vision to change the risky
+                        behavior on roads.</p>
+                    <p>As one of strategies to reach the vision ‘Zero’, Transport Department through its
+                        social media channels is engaging and educating people on the need for behaving
+                        responsibly to keep people on the roads of Delhi safe.</p>
+                    </div>
+                    <!-- Slideshow container -->
+                    <div class="slideshow-container">
+                        <!-- Full-width slides with number and caption text -->
+                        <div class="mySlides fade mySlides_bottom">
+                            <div class="numbertext">1 / 3</div>
+
+                            <div class="slideContent">
+                                <div class="videoBorder videoBorder_bottom">
+                                    <iframe
+                                        src="https://www.youtube.com/embed/_NeEF1fwT4k?autoplay=0&mute=1&wmode=transparent"
+                                        title="YouTube video player" frameborder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen></iframe>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="mySlides fade mySlides_bottom">
+                            <div class="numbertext">2 / 3</div>
+                            <div class="slideContent">
+                                <div class="videoBorder videoBorder_bottom">
+                                    <iframe
+                                        src="https://www.youtube.com/embed/_NeEF1fwT4k?autoplay=0&mute=1&wmode=transparent"
+                                        title="YouTube video player" frameborder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen></iframe>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="mySlides fade mySlides_bottom">
+                            <div class="numbertext">3 / 3</div>
+                            <div class="slideContent">
+                                <div class="videoBorder videoBorder_bottom">
+                                    <iframe
+                                        src="https://www.youtube.com/embed/_NeEF1fwT4k?autoplay=0&mute=1&wmode=transparent"
+                                        title="YouTube video player" frameborder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen></iframe>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- Next and previous buttons -->
+                        <a class="prev" onclick="plusSlides(-1,'bottom')">&#10094;</a>
+                        <a class="next" onclick="plusSlides(1,'bottom')">&#10095;</a>
+
+                        <!-- The dots/circles -->
+                        <div style="text-align:center">
+                            <span class="dot dot_bottom" onclick="currentSlide(1,'bottom')"></span>
+                            <span class="dot dot_bottom" onclick="currentSlide(2,'bottom')"></span>
+                            <span class="dot dot_bottom" onclick="currentSlide(3,'bottom')"></span>
+                        </div>
+                    </div>
+                </div>
+                <br>
 
 
-            <div id="facts" class="tabcontent">
-                <h3>FACTSHEETS AND REPORTS</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                    labore et dolore magna aliqua.</p>
             </div>
+        </div>
+
 
         </div>
     </section>
