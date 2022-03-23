@@ -38,6 +38,11 @@ function openTab(evt, name,fromTop) {
     if(fromTop==true){
       fromtoptab=document.getElementsByClassName(name);
       fromtoptab[0].className += " active";
+      if(name=="learning"){
+        fromtoptab=document.getElementsByClassName("messageTab");
+        fromtoptab[0].className += " active";
+        document.getElementById("message").style.display = "block";
+      }
     }   
   
   } 
