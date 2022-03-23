@@ -24,7 +24,7 @@ function openTab(evt, name,fromTop) {
     // Get all elements with class="tablinks" and remove the class "active"
     tablinks = document.getElementsByClassName("tablinks");
     for (i = 0; i < tablinks.length; i++) {
-      if(evt.target.parentElement.classList[1]==tabcontent[i].parentElement.classList[1]){
+      if(evt.target.parentElement.classList[1]==tablinks[i].parentElement.classList[1]){
         tablinks[i].className = tablinks[i].className.replace(" active", "");
       }
       
@@ -37,7 +37,7 @@ function openTab(evt, name,fromTop) {
   } 
 
   // Get the element with id="defaultOpen" and click on it
- // document.getElementById("defaultOpen").click();
+  document.getElementById("defaultOpen").click();
   document.getElementById("defaultOpen_LOWER").click();
 
 

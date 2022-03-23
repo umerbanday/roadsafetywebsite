@@ -317,7 +317,7 @@ function init() {
   bbox1 = new THREE.Box3();
 
   // load a SVG resource
-
+ 
   top.add(dash);
   top.add(steering);
 
@@ -528,14 +528,17 @@ function resizeRendererToDisplaySize(renderer) {
 }
 
 function checkcollision() {
-  let fl=false;
+  let collided=false;
+  //set bounding box from the dashboard
   bbox.setFromObject(dash);
+  //check collisions with other cars
   if (cubes) {
+    //traverse through every car and as soon as collison nis detected, stop traversing(return false and set collided =true)
     cubes.every((cube, ndx) => {
       bbox1.setFromObject(cube);
       if (bbox.intersectsBox(bbox1)) {
        
-        fl=true;
+        collided=true;
         return false
       }
       else{
@@ -544,12 +547,13 @@ function checkcollision() {
       
     });
   }
+  //check collisions with walls
   if(bbox.min.x<-15||bbox.max.x>15)
   {
-    fl=true;  
+    collided=true;  
 
   }
-  if(fl==true){
+  if(collided==true){
     sound.stop();
     crash.play();
     cont = false;

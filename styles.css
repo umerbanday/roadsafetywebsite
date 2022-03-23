@@ -4,10 +4,17 @@ html,
 body {
   margin: 0;
   height: 100%;
-  font-family:'Roboto';
+  font-family: 'Gotham', sans-serif;
+  
+
   scroll-behavior: smooth;
   
   
+}
+
+a {
+  text-decoration: none;
+  color:white;
 }
 
 .blur{
@@ -299,6 +306,14 @@ body {
   width:100%;
 }
 
+.socialposts{
+  width:100%;
+  display:flex;
+  justify-content: center;
+  height:30em;
+  overflow-y: auto;
+}
+
 
 /* Next & previous buttons */
 .prev, .next {
@@ -412,7 +427,9 @@ body {
 /* Style the tab */
  .tab {
   overflow: hidden;
+  width:"100%";
   background-color: white;
+  display:flex;
 }
 
 /* Style the buttons that are used to open the tab content */
@@ -422,20 +439,25 @@ body {
   font-size: 15px;
   float: left;
   border: none;
+  margin:10px;
+  border-radius: 5px;
   outline: none;
   cursor: pointer;
   padding: 14px 16px;
   transition: 0.3s;
+  flex-grow: 1;
 }
 
 /* Change background color of buttons on hover */
  .tab button:hover {
   background-color: lightcoral;
+  box-shadow: 6px 6px 3px grey;
 }
 
 /* Create an active/current tablink class */
 .tab button.active {
   background-color: red;
+  box-shadow: 6px 6px 3px grey;
   color:white;
 }
 
@@ -449,7 +471,8 @@ body {
 }
 
 .media_material{
-  display:flex
+  display:flex;
+  align-items:center;
 }
 
 
@@ -462,18 +485,6 @@ body {
   color:white
 }
 
-/*STYLE FOR UPPER TAB VIEW*/
-
-.upper_tab_view .tablinks{
-  width:50%;
-}
-
-
-/*STYLE FOR LOWER TAB VIEW*/
-
-.lower_tab_view .tablinks{
-  width:50%;
-}
 
 
 /*styles for the menu*/
@@ -493,6 +504,7 @@ nav{
   flex-direction: column; 
   background-color: darkred;
   font-size: 4vw;
+  font-weight: bold;
   
 }
 nav ul{
@@ -591,18 +603,21 @@ nav li{
   /* For topbar: */
   .topbar{
     padding:1em;
+    padding-left: 2em;
+    padding-right: 2em;
     justify-content: space-between;
     flex-wrap: unset;
     align-items: center;
-    background-color: #E4E5E5;
+    background-color: white;
   }
   
   .transport_logo{
     order:1;
-    width:18em;
+    width:25em;
     margin-right: unset;
     margin-left:unset;
     padding:unset;
+    background-color: white;
   }
 
   
