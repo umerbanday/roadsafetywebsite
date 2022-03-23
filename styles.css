@@ -168,21 +168,28 @@ a {
 .play_button{
   order:4;
   width:100%;
-  background-color: orange;
   display:flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: white;
 
 }
 
 .play_button a{
   text-decoration: none;
-  color: white;
+  font-size: large;
+  color: black;
 
+}
+.play_button img{
+  width: 7em;
+  margin:1em
 }
 
 .play_button:hover{
   background-color: darkorange;
+  
 }
 
 .top_hashtag_container{
@@ -299,11 +306,12 @@ a {
 }
 
 .videoBorder_bottom{
-  flex-basis:unset;
-  width:90%;
+  flex-basis: unset;
+  margin:auto;
 }
 .videoBorder_bottom > iframe{
   width:100%;
+  height:100%
 }
 
 .socialposts{
@@ -313,7 +321,11 @@ a {
   height:30em;
   overflow-y: auto;
 }
-
+.messageClass{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
 
 /* Next & previous buttons */
 .prev, .next {
@@ -464,6 +476,7 @@ a {
 /* Style the tab content */
  .tabcontent {
   display: none;
+  color:white;
   padding: 6px 12px;
   border: 1px solid #ccc;
   border-top: none;
@@ -645,17 +658,17 @@ nav li{
     order:4;
     width:unset;
     width:18em;
-    background-color: orange;
     display:flex;
     justify-content: center;
     border-radius: 2em;
     align-items: center;
-  
+    padding:0.3em;
   }
   
   
   .play_button:hover{
-    background-color: darkorange;
+    background-color: lightgray;
+    cursor: pointer;
   }
   
   .top_hashtag_container{

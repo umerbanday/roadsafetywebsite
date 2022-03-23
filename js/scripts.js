@@ -3,7 +3,7 @@
 
 function openTab(evt, name,fromTop) {
     // Declare all variables
-    var i, tabcontent, tablinks;
+    var i, tabcontent, tablinks,fromtoptab;
     console.log(evt.target.parentElement.classList[1])
 
    
@@ -26,13 +26,19 @@ function openTab(evt, name,fromTop) {
     for (i = 0; i < tablinks.length; i++) {
       if(evt.target.parentElement.classList[1]==tablinks[i].parentElement.classList[1]){
         tablinks[i].className = tablinks[i].className.replace(" active", "");
-      }
+      }else if(fromTop==true){
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+       }
       
     }
   
     // Show the current tab, and add an "active" class to the button that opened the tab
     document.getElementById(name).style.display = "block";
-    evt.currentTarget.className += " active";   
+    evt.currentTarget.className += " active";
+    if(fromTop==true){
+      fromtoptab=document.getElementsByClassName(name);
+      fromtoptab[0].className += " active";
+    }   
   
   } 
 
