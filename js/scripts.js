@@ -1,3 +1,20 @@
+//FOR COLLAPSIBLE MOBILE MENU
+
+const nav = document.getElementById("navbar")
+
+const mobilebtn = document.getElementById("mobile_menu")
+const closebtn = document.getElementById("menu_close")
+
+
+mobilebtn.addEventListener('click',()=>{
+  console.log("mob clicked")
+  nav.style.display="block"
+})
+
+closebtn.addEventListener('click',()=>{
+  nav.style.display="none"
+})
+
 
 //FOR TABS
 
@@ -46,15 +63,16 @@ function openTab(evt, name,fromTop) {
     }   
   
   } 
-
+  
   // Get the element with id="defaultOpen" and click on it
   document.getElementById("defaultOpen").click();
   document.getElementById("defaultOpen_LOWER").click();
-
+  
 
   //FOR SLIDESHOW
 
   var slideIndex = 1;
+ 
 showSlides(slideIndex,'top');
 showSlides(slideIndex,'bottom');
 
@@ -84,19 +102,4 @@ function showSlides(n,source) {
   dots[slideIndex-1].className += " active";
 } 
 
-//FOR COLLAPSIBLE MOBILE MENU
-
-const nav = document.getElementById("navbar")
-
-const mobilebtn = document.getElementById("mobile_menu")
-const closebtn = document.getElementById("menu_close")
-
-mobilebtn.addEventListener('click',()=>{
-  console.log("mob clicked")
-  nav.style.display="block"
-})
-
-closebtn.addEventListener('click',()=>{
-  nav.style.display="none"
-})
 

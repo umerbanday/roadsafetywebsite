@@ -244,8 +244,8 @@ a {
   border-style: none;
   position: relative; /* allows repositioning */
   z-index: -1;
-  width:150%;
-  margin-left: -25%;
+  width: 100%;
+  
 }
 
 
@@ -287,7 +287,7 @@ a {
   align-items: center;
   flex-wrap: wrap;
   padding:5em;
-  height:100%;
+  
 }
 
 .videoBorder > iframe{
@@ -542,7 +542,7 @@ nav a:focus{
 nav li{
   padding-right: 1em;
   
-  height:1em;
+  
   line-height: 1em;
   margin-top:0.5em;
   margin-bottom:0.5em;
