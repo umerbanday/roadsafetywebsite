@@ -20,8 +20,8 @@ closebtn.addEventListener('click',()=>{
 
 function openTab(evt, name,fromTop) {
     // Declare all variables
-    var i, tabcontent, tablinks,fromtoptab;
-    console.log(evt.target.parentElement.classList[1])
+    var i, tabcontent, tablinks,tabimgs,fromtoptab,source;
+    console.log(evt.currentTarget)
 
    
     // Get all elements with class="tabcontent" and hide them
@@ -48,10 +48,25 @@ function openTab(evt, name,fromTop) {
        }
       
     }
+
+    // Get all images with class="nutton_image" and change source
+    tabimgs = document.getElementsByClassName("button_image");
+    for (i = 0; i < tabimgs.length; i++) {
+      if(!fromTop&&evt.target.parentElement.classList[1]==tabimgs[i].parentElement.classList[1]){
+        tabimgs[i].src= tabimgs[i].src.replace("_active.png", ".png");
+      } 
+    }
   
     // Show the current tab, and add an "active" class to the button that opened the tab
     document.getElementById(name).style.display = "block";
+   if(!(name=="media"||name=="learning")){
+    document.getElementById(name+"_img").src=document.getElementById(name+"_img").src.replace(".png", "_active.png")
+   }
+   
+    
     evt.currentTarget.className += " active";
+    console.log(evt.currentTarget)
+   
     if(fromTop==true){
       fromtoptab=document.getElementsByClassName(name);
       fromtoptab[0].className += " active";

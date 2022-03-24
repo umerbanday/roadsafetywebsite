@@ -24,16 +24,20 @@
         <a href="index.html" class="transport_logo">
             <img src="static/transport_logo.png" alt="Transport Department Logo">
         </a>
-        <div class="main_hashtag_container">
+        <!--<div class="main_hashtag_container">
             <a class="twitter-hashtag-button  top_hashtag_container" data-size="large"
                 href="https://twitter.com/intent/tweet?button_hashtag=SadakSurakshitDilliSurakshit">
                 Tweet #SadakSurakshitDilliSurakshit</a>
+        </div>-->
+
+        <div class="main_hashtag_container">
+            #SadakSurakshitDilliSurakshit
         </div>
 
         
-        <div id="playbtn"  class="play_button">
-            <a href="./simulator/index.html"><img src="static/car.png" alt="car"></a><a href="./simulator/index.html">Click to drive!</a>
-        </div>
+        <a href="./simulator/index.html" id="playbtn"  class="play_button">
+            <img src="static/car.png" alt="car"><div class="play_text">CLICK TO DRIVE!</div>
+        </a>
         <!--<a href="#" class="bloomberg_logo">
                 <img src="static/bloomberg_logo.jpg" alt="Bloomberg Logo">
             </a>-->
@@ -49,8 +53,7 @@
             <nav>
                 <img id="menu_close" src="static/cros.svg" alt="close icon" class="menu_close">
                 <ul>
-                    <li><a href="#testimonials">VICTIM TESTIMONIALS</a></li>
-                    <li><a href="#social">SOCIAL MEDIA</a></li>
+                    <li><a href="#testimonials">VICTIMS' TESTIMONIALS</a></li>
                     <li><a href="#learn" onclick="openTab(event,'learning',true)">LEARN TO BE SAFE</a></li>
                     <li><a href="#learn" onclick="openTab(event,'media',true)">MEDIA MATERIAL</a></li>
                 </ul>
@@ -77,7 +80,7 @@
                     <div class="videoBorder">
                         <iframe
                             src="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2Fdelhiroadsafety%2Fvideos%2F419767142954812%2F&show_text=false&width=560&t=0"
-                            width="560" height="314" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
+                            style="border:none;overflow:hidden" scrolling="no" frameborder="0"
                             allowfullscreen="true"
                             allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
                             allowFullScreen="true"></iframe>
@@ -105,7 +108,7 @@
                             allowFullScreen="true"></iframe>
                     </div>
                     <div class="text">
-                        <p class="quote">"My brother is paying the price because someone else was speeding"</p>
+                        <p class="quote">"My brother is paying the price because someone else was speeding. We should follow speed limits to keep everypne safe."</p>
                         <p class="description">Road crashes do not kill or maim just a person. They leave entire
                             families in ruins for years and sometimes for generations. Watch
                             what Prem Pradeep's family went through! Let’s make Delhi roads
@@ -121,7 +124,7 @@
         <br>
 
         <!-- The dots/circles -->
-        <div style="text-align:center">
+        <div style="text-align:right;margin-right:10vw">
             <span class="dot dot_top" onclick="currentSlide(1,'top')"></span>
             <span class="dot dot_top" onclick="currentSlide(2,'top')"></span>
         </div>
@@ -141,8 +144,8 @@
         <div class="timelines">
             <div class="twitter_timeline">
                 <div class="timeline_head">
-                    <img src="static/twit.svg" alt="" class="facebook_logo">
-                    <h1>TWITTER</h1>
+                    <img src="static/twit.png" alt="" class="social_logo">
+                    <h1>#SadakSurakshitDilliSurakshit</h1>
                 </div>
                 <div class="timeline">
                     <a class="twitter-timeline" data-width="500" data-height="500"
@@ -152,8 +155,8 @@
             </div>
             <div class="facebook_timeline">
                 <div class="timeline_head">
-                    <img src="static/fb.svg" alt="" class="twitter_logo">
-                    <h1>FACEBOOK</h1>
+                    <img src="static/fb.png" alt="" class="social_logo">
+                    <h1>#SadakSurakshitDilliSurakshit</h1>
                 </div>
                 <div class="timeline">
                     <iframe
@@ -169,9 +172,9 @@
         <div class="container lower_tab">
 
             <div class="tab lower_tab">
-                <button class="tablinks learning" onclick="openTab(event, 'learning',false)"
+                <button class="tablinks learning lower_tab_style" onclick="openTab(event, 'learning',false)"
                     id="defaultOpen_LOWER">LEARN TO BE SAFE</button>
-                <button class="tablinks media" onclick="openTab(event, 'media',false)">MEDIA MATERIAL</button>
+                <button class="tablinks media lower_tab_style" onclick="openTab(event, 'media',false)">MEDIA MATERIAL</button>
             </div>
 
 
@@ -179,11 +182,11 @@
             <div id="learning" class="tabcontent">
                 <div class="container upper_tab">
                     <div class="tab upper_tab">
-                        <button class="tablinks messageTab" onclick="openTab(event, 'message',false)" id="defaultOpen">MESSAGE FROM
-                            TRANSPORT MINISTER</button>
-                        <button class="tablinks" onclick="openTab(event, 'know',false)">Did you know?</button>
-                        <button class="tablinks" onclick="openTab(event, 'obey',false)">Obey the law.</button>
-                        <button class="tablinks" onclick="openTab(event, 'safe',false)">Staying safe tips</button>
+                        <button class="tablinks upper_tab upper_tab_style" onclick="openTab(event, 'message',false)" id="defaultOpen"><img id="message_img" class="button_image"  src="static/message.png" alt=""><div>Message by Hon'ble Transport Minister</div></button>
+                        <button class="tablinks upper_tab upper_tab_style" onclick="openTab(event, 'know',false)"><img id="know_img" class="button_image"  src="static/know.png" alt="">
+                            <div>Did you know?</div></button>
+                        <button class="tablinks upper_tab upper_tab_style" onclick="openTab(event, 'obey',false)"><img id="obey_img" class="button_image"  src="static/obey.png" alt=""><div>Obey the law.</div></button>
+                        <button class="tablinks upper_tab upper_tab_style" onclick="openTab(event, 'safe',false)"><img  id="safe_img" class="button_image"  src="static/safe.png" alt=""><div>Staying safe tips</div></button>
 
                     </div>
 
@@ -589,7 +592,7 @@
 
     <section class="helpline">
         <div class="container">
-            <h1>Helpline Numbers</h1>
+            <h1></h1>
         </div>
     </section>
 

@@ -156,9 +156,14 @@ a {
 
 .main_hashtag_container{
   order:3;
-  width:100%;
+  width:30vw;
+  background-color: #E42b29;
+    border-radius: 4em;
+    padding-top: 0.7em;
+    padding-bottom: 0.7em;
+    font-size: 1.6vw;
+    color:white;
   margin:1em;
-  background-color: #E4E5E5;
   display:flex;
   justify-content: center;
   align-items: center;
@@ -169,7 +174,6 @@ a {
   order:4;
   width:100%;
   display:flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: white;
@@ -183,8 +187,13 @@ a {
 
 }
 .play_button img{
-  width: 7em;
+  width: 12VW;
   margin:1em
+}
+.play_text{
+  color:black;
+  font-size: 1.2vw;
+  font-weight: 500;
 }
 
 .play_button:hover{
@@ -196,7 +205,7 @@ a {
   width:80%;
 
 
-  background-color:red;
+  background-color:#E42b29;
   text-decoration: none;
   padding:1em;
   height:6vw;
@@ -265,7 +274,7 @@ a {
 /* Slideshow container */
 .slideshow-container {
   position: relative;
-  min-height: 40em;
+
   margin: auto;
   
 }
@@ -285,18 +294,19 @@ a {
   display:flex;
   justify-content: space-evenly;
   align-items: center;
-  flex-wrap: wrap;
+
   padding:5em;
   
 }
 
 .videoBorder > iframe{
   border-radius: 10px;
-  min-height: 30em;
+  width:35vw;
+  height:19vw
 }
 
 .videoBorder{
-  flex-basis: 60em;
+ 
   padding:10px;
   background-color: transparent;
   border-style: solid;
@@ -358,20 +368,21 @@ a {
 
 /* Caption text */
 .text {
-  flex-basis: 20em;
+  flex-basis: 1;
   color: white;
   font-size: 20px;
-  padding: 30px;
+  padding: 5vw;
   text-align: left;
 }
 
 .text > .quote{
   font-weight: bold;
-  font-style: italic;
+ 
 }
 
 .text > .description{
   font-size: 17px;
+  
 }
 
 /* Number text (1/3 etc) */
@@ -418,10 +429,7 @@ a {
   to {opacity: 1}
 }
 
-.slideshow-container iframe{
-  width:100%;
-  height: 100%;
-}
+
 
 /*for dashed line*/
 .line {
@@ -436,23 +444,38 @@ a {
 
 /*Styles for tabs*/
 
+.upper_tab_style{
+  width:15vw;
+  font-size: 15px;
+}
+.upper_tab_style img{
+  width:5vw;
+  margin:15px
+}
+.lower_tab_style{
+ min-height:20vw;
+ font-size: 1.2vw;
+}
+
 /* Style the tab */
  .tab {
   overflow: hidden;
   width:"100%";
-  background-color: white;
+  background-color: #E42b29;
   display:flex;
 }
 
 /* Style the buttons that are used to open the tab content */
  .tab button {
-  background-color: inherit;
+  background-color: #E42b29;
+  box-shadow: 6px 6px 3px rgba(0, 0, 0, 0.5);
   font-weight: bold;
-  font-size: 15px;
+  
   float: left;
   border: none;
   margin:10px;
   border-radius: 5px;
+  color:white;
   outline: none;
   cursor: pointer;
   padding: 14px 16px;
@@ -463,14 +486,15 @@ a {
 /* Change background color of buttons on hover */
  .tab button:hover {
   background-color: lightcoral;
-  box-shadow: 6px 6px 3px grey;
+  box-shadow: 6px 6px 3px rgba(0, 0, 0, 0.5);
 }
 
 /* Create an active/current tablink class */
 .tab button.active {
-  background-color: red;
-  box-shadow: 6px 6px 3px grey;
-  color:white;
+  background-color: white;
+  box-shadow: 6px 6px 3px rgba(0, 0, 0, 0.5);
+  color:black;
+  content: url("static/twit.svg");
 }
 
 /* Style the tab content */
@@ -478,9 +502,9 @@ a {
   display: none;
   color:white;
   padding: 6px 12px;
-  border: 1px solid #ccc;
+  
   border-top: none;
-  background-color: red;
+  background-color: #E42b29;
 }
 
 .media_material{
@@ -531,7 +555,7 @@ nav a,nav li{
 }
 
 .active{
-  background-color: red;
+  background-color: #E42b29;
 }
 
 nav a:focus{
@@ -559,6 +583,11 @@ nav li{
 
 
 /*Social Media Timelines*/
+.social_logo{
+  width:4vw;
+  height:4vw;
+}
+
 .social_media{
   padding:3em;
   width:100%;
@@ -570,10 +599,12 @@ nav li{
   text-align: center;
 }
 
+
+
 .timelines{
   
   display:flex;
-  flex-wrap: wrap;
+  
   justify-content: center;
   border-radius: 10px;
   padding:2em;
@@ -581,17 +612,19 @@ nav li{
 
 
 .facebook_timeline{
+  width:40vw;
   margin:1em;
   padding:2em;
   border-radius: 10px;
-  background-color: #4267B2;
+  background-color: white;
 }
 
 .twitter_timeline{
   margin:1em;
+  width:40vw;
   padding:2em;
   border-radius: 10px;
-  background-color: #1DA1F2;
+  background-color: white;
 }
 
 .timeline{
@@ -601,18 +634,19 @@ nav li{
 }
 
 .timelines h1{
-  color:white;
+  font-weight: 500;
   text-align: center;
   margin-left: 1em;
 }
 .timeline_head{
   display:flex;
+  margin:15px;
   justify-content: center;
 }
 
 /*For desktop*/
 
-@media only screen and (min-width: 1000px) {
+@media only screen and (min-width: 800px) {
   /* For topbar: */
   .topbar{
     padding:1em;
@@ -626,9 +660,9 @@ nav li{
   
   .transport_logo{
     order:1;
-    width:25em;
+    width:20vw;
     margin-right: unset;
-    margin-left:unset;
+    margin-left:2vw;
     padding:unset;
     background-color: white;
   }
@@ -645,8 +679,7 @@ nav li{
   
   .main_hashtag_container{
     order:2;
-    width:unset;
-    background-color: unset;
+    
     display:flex;
     justify-content: center;
     align-items: center;
@@ -657,7 +690,7 @@ nav li{
   .play_button{
     order:4;
     width:unset;
-    width:18em;
+    
     display:flex;
     justify-content: center;
     border-radius: 2em;
@@ -673,7 +706,7 @@ nav li{
   
   .top_hashtag_container{
     width:unset;
-    background-color:red;
+    background-color:#E42b29;
     text-decoration: none;
     padding:0.5em;
     padding-left:0.8em;
@@ -706,15 +739,15 @@ nav li{
   /* for navbar */
   .navbar{
     display: block;
-    background-color: red;
+    background-color: #E42b29;
     width:unset;
     height:unset;
     position: unset;
     z-index: unset;
     right:unset;
     top:unset;
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
+    padding-top: 0.7vw;
+    padding-bottom: 0.7vw;
     padding-left: 15%;
     padding-right: 15%;
   }
@@ -723,7 +756,8 @@ nav li{
     display:block;
     flex-direction: unset; 
     background-color: unset;
-    font-size: 1em;
+    font-weight: 500;
+    font-size: 1.2vw;
     
   }
   nav ul{
