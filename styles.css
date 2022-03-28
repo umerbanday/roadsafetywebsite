@@ -93,16 +93,27 @@ a {
   color:white
 }
 
+
+.crashed img{
+  width:30vw
+}
+
 .control{
-  display:flex;
-  flex-direction: column;
+  display:none;
+  justify-content: space-between;
   align-items: center;
   position: absolute;
-  width:30%;
- 
-  left:50%;
-  bottom:20%;
-  transform: translate(-50%, -50%);
+  width:100%;
+  bottom:0%;
+  padding:30px 
+}
+.control button{
+  font-size: large;
+  border-radius: 10px;
+  padding:4px;
+
+  background-color: #E42b29;
+  color: white;
 }
 
 .splash{
@@ -110,7 +121,7 @@ a {
   flex-direction: column;
   align-items: center;
   position: absolute;
-  width:30%;
+ 
  
   left:50%;
   top:50%;
@@ -176,7 +187,7 @@ a {
     font-size: 1.6vw;
     color:white;
   margin:1em;
-  display:flex;
+  display:none;
   justify-content: center;
   align-items: center;
 
@@ -616,7 +627,8 @@ nav li{
 .timelines{
   
   display:flex;
-  
+ 
+  flex-direction: column;
   justify-content: center;
   border-radius: 10px;
   padding:2em;
@@ -624,7 +636,10 @@ nav li{
 
 
 .facebook_timeline{
-  width:40vw;
+ display:flex;
+ overflow: hidden;
+ flex-direction: column;
+ align-items: center;
   margin:1em;
   padding:2em;
   border-radius: 10px;
@@ -632,17 +647,19 @@ nav li{
 }
 
 .twitter_timeline{
+  overflow: hidden;
+  display:flex;
+ flex-direction: column;
+ align-items: center;
   margin:1em;
-  width:40vw;
+ 
   padding:2em;
   border-radius: 10px;
   background-color: white;
 }
 
 .timeline{
-  width:500px;
-  margin-left: auto;
-  margin-right: auto;
+ 
 }
 
 .timelines h1{
@@ -658,7 +675,16 @@ nav li{
 
 /*For desktop*/
 
-@media only screen and (min-width: 800px) {
+@media only screen and (min-width: 1000px) {
+  .timelines{
+  
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    border-radius: 10px;
+    padding:2em;
+  }
+
   /* For topbar: */
   .topbar{
     padding:1em;
@@ -694,10 +720,18 @@ nav li{
   .main_hashtag_container{
     order:2;
     
+   
+    width:30vw;
+    background-color: #E42b29;
+      border-radius: 4em;
+      padding-top: 0.7em;
+      padding-bottom: 0.7em;
+      font-size: 1.6vw;
+      color:white;
+    margin:1em;
     display:flex;
     justify-content: center;
     align-items: center;
-   
   
   }
   

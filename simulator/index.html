@@ -43,12 +43,13 @@
 
             <div id="control" class="control">
               
-              <button id="right" class="right">
-                  Right
-              </button>
+            
               <button id="left" class="left">
-                Left
+                Turn Left
             </button>
+            <button id="right" class="right">
+             Turn Right
+          </button>
               
           </div>
             
@@ -270,6 +271,7 @@ var last = 20;
 var sound;
 var crash;
 var brake;
+var offsety=0;
 
 var accel = 0;
 var step = 0;
@@ -307,8 +309,11 @@ function init() {
   }else if(aspect>1&&aspect<=1.3) {
     fov =115
   }if(aspect>1.3) {
-    fov =120
+    fov =130;
+    offsety=0.7;
   }
+
+
 
   camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 
@@ -458,9 +463,9 @@ composer.addPass(filmPass); */
 //function to reset the game
 function reset() {
   camera.position.z = 1.2;
-  camera.position.y = 3.1;
+  camera.position.y = 3.1+offsety;
   camera.position.x = -0.5;
-  camera.lookAt(new THREE.Vector3(-0.5, 3.1, 0));
+  camera.lookAt(new THREE.Vector3(-0.5, 3.1+offsety, 0));
 
   //reset car position
   dash.position.x = -0.5;
@@ -568,6 +573,8 @@ function checkcollision() {
     sound.stop();
     crash.play();
     cont = false;
+    control.style.display="none"
+
     crashed.style.display="flex";
     clearInterval(intervalID);
     bl=0;
@@ -730,12 +737,27 @@ const playbtn = document.getElementById("play");
 const crashed=document.getElementById("crashed");
 const splash=document.getElementById("splash");
 const enterbutton=document.getElementById("enterbutton");
+const rightbutton=document.getElementById("right")
+const leftbutton=document.getElementById("left")
+const control=document.getElementById("control")
 var ping = new Audio("../sounds/enterbutton.ogg");
+var win = window,
+    doc = document,
+    docElem = doc.documentElement,
+    body = doc.getElementsByTagName('body')[0],
+    x_width = win.innerWidth || docElem.clientWidth || body.clientWidth,
+    y_height = win.innerHeight|| docElem.clientHeight|| body.clientHeight;
+
+   
 
 playbtn.addEventListener("click", () => {
   //console.log("reset clicked");
   ping.play();
   sound.play();
+  if(x_width<1000){
+    control.style.display="flex"
+  }
+ 
   gamecanvas.classList.remove("blur");
   main();
   splash.style.display="none"
@@ -748,6 +770,67 @@ resetbtn.addEventListener("mouseenter", () => {
   ping.play();
   console.log("mouse hoverrr")
 });
+
+var rightdown=false;
+var leftdown=false;
+
+function absorbEvent_(event) {
+      var e = event || window.event;
+      e.preventDefault && e.preventDefault();
+      e.stopPropagation && e.stopPropagation();
+      e.cancelBubble = true;
+      e.returnValue = false;
+      return false;
+    }
+
+leftbutton.ontouchstart=absorbEvent_;
+leftbutton.ontouchmove=absorbEvent_;
+leftbutton.ontouchend=absorbEvent_;
+leftbutton.ontouchcancel=absorbEvent_;
+
+
+
+rightbutton.ontouchstart=(e)=>{
+  e.preventDefault && e.preventDefault();
+  e.stopPropagation && e.stopPropagation();
+  if(leftdown==false){
+    rightdown=true;
+   
+    keyDown["right"] = true;
+    console.log("rightdown")
+  }
+}
+rightbutton.ontouchend=(e)=>{
+  e.preventDefault && e.preventDefault();
+  e.stopPropagation && e.stopPropagation();
+  if(leftdown==false){
+    rightdown=false;
+    keyDown["right"] = false;
+  }
+}
+leftbutton.ontouchstart=(e)=>{
+  e.preventDefault && e.preventDefault();
+      e.stopPropagation && e.stopPropagation();
+  if(rightdown==false){
+    leftdown=true;
+   
+    keyDown["left"] = true;
+  }
+}
+leftbutton.ontouchend=(e)=>{
+  e.preventDefault && e.preventDefault();
+  e.stopPropagation && e.stopPropagation();
+  if(rightdown==false){
+    leftdown=false;
+    keyDown["left"] = false;
+  }
+}
+
+
+
+
+
+
 
 /*stopbtn.addEventListener("click", () => {
   console.log("stop clicked");
@@ -766,6 +849,9 @@ resetbtn.addEventListener("click", () => {
  // console.log("reset clicked");
  ping.play();
   reset();
+  if(x_width<1000){
+    control.style.display="flex"
+  }
   cont = true;
   sound.stop();
   sound.play();
