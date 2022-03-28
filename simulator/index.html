@@ -40,6 +40,17 @@
                     <source src="../sounds/enterbutton.ogg"/>
                 </audio>
             </div>
+
+            <div id="control" class="control">
+              
+              <button id="right" class="right">
+                  Right
+              </button>
+              <button id="left" class="left">
+                Left
+            </button>
+              
+          </div>
             
         </div>
     </section>
@@ -574,8 +585,8 @@ function render(time) {
   //controls
 
   if (keyDown["up"]) {
-    composer.addPass(hblur);
-    composer.addPass(vblur);
+    //composer.addPass(hblur);
+    //composer.addPass(vblur);
   } else if (keyDown["down"]) {
     if (step >= 0) {
       step -= 0.01;
