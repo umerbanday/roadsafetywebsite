@@ -10,6 +10,13 @@
     padding:2.5rem;
 }
 
+.text-bold{
+    font-weight: 600;
+}
+.text-underline{
+    text-decoration: solid;
+}
+
 /* Flex center */
 .flex-column-center{
     display: flex;
@@ -22,9 +29,12 @@
 /* Social Links : Media Material Section */
 
 #sociallinks {
+    display: flex;
     font-size: 1rem!important;
 }
-
+#sociallinks img {
+    padding: 0.5rem;
+}
 /* Headings : Media Media Section */
 .media_material_text h1{
     font-size:1.2rem;
@@ -41,6 +51,7 @@ table, th, td {
     border: 1px solid var(--light);
     border-collapse: collapse;
     font-size: 14px;
+    padding:0.4rem;
   }
   
   
