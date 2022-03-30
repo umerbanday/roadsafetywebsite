@@ -132,6 +132,7 @@ a {
   transform: translate(-50%, -50%);
 }
 .play{
+  display: none;
   margin:1em;
   font-size: 2em;
   border-radius: 1em;
@@ -145,6 +146,10 @@ a {
  
   background-color: darkgreen;
 
+}
+.loading_img{
+  margin:15px;
+  width:150px;
 }
 
 

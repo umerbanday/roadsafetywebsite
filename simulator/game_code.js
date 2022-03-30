@@ -222,6 +222,8 @@ var resetplay = true;
 //init function called after loading completes
 function init() {
   console.log("modelloaded");
+  document.getElementById("loading_img").style.display="none"
+  document.getElementById("play").style.display="block"
 
   canvas = document.querySelector("#c");
   
