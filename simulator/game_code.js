@@ -1,14 +1,7 @@
 import * as THREE from "https://cdn.skypack.dev/three@0.132.2";
 import { GLTFLoader } from "https://cdn.skypack.dev/three@0.132.2/examples/jsm/loaders/GLTFLoader.js";
 import { SVGLoader } from "https://cdn.skypack.dev/three@0.132.2/examples/jsm/loaders/SVGLoader.js";
-/*import { EffectComposer } from "https://cdn.skypack.dev/three@0.132.2/examples/jsm/postprocessing/EffectComposer.js";
-import { RenderPass } from "https://cdn.skypack.dev/three@0.132.2/examples/jsm/postprocessing/RenderPass.js";
-import { BloomPass } from "https://cdn.skypack.dev/three@0.132.2/examples/jsm/postprocessing/BloomPass.js";
-import { FilmPass } from "https://cdn.skypack.dev/three@0.132.2/examples/jsm/postprocessing/FilmPass.js";
-import { HorizontalBlurShader } from "https://cdn.skypack.dev/three@0.132.2/examples/jsm/shaders/HorizontalBlurShader.js";
-import { VerticalBlurShader } from "https://cdn.skypack.dev/three@0.132.2/examples/jsm/shaders/VerticalBlurShader.js";
-import { ShaderPass } from "https://cdn.skypack.dev/three@0.132.2/examples/jsm/postprocessing/ShaderPass.js";
-import { OrbitControls } from "https://cdn.skypack.dev/three@0.132.2/examples/jsm/controls/OrbitControls.js";*/
+
 
 //setup the loader
 const manager = new THREE.LoadingManager();
@@ -91,7 +84,7 @@ function load() {
         console.log(error);
       }
     );
-
+    
     loader.load(
       // resource URL
       "../static/cardash.svg",

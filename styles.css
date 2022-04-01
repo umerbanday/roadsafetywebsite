@@ -85,8 +85,11 @@ a {
 .crashed{
   display:none;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   position: absolute;
+  height: 100%;
+ 
   left:50%;
   top:50%;
   transform: translate(-50%, -50%);
@@ -99,7 +102,7 @@ a {
 
 
 .crashed img{
-  width:30vw
+  height:60%;
 }
 
 .control{
@@ -123,13 +126,17 @@ a {
 .splash{
   display:flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   position: absolute;
- 
+  height: 100%;
  
   left:50%;
   top:50%;
   transform: translate(-50%, -50%);
+}
+.splash_img{
+  height:50%;
 }
 .play{
   display: none;
