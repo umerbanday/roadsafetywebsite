@@ -20,6 +20,8 @@ const loader = new SVGLoader(manager);
 
 //load function
 function load() {
+
+   
   for (const model of Object.values(models)) {
     gltfLoader.load(model.url, (gltf) => {
       model.gltf = gltf;
@@ -796,6 +798,7 @@ resetbtn.addEventListener("click", () => {
   main();
  
 });
+
 
 /*gamebtn.addEventListener("click", () => {
   console.log("game clicked");
