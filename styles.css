@@ -85,8 +85,12 @@ a {
 .crashed{
   display:none;
   flex-direction: column;
+  justify-content: flex-end;
   align-items: center;
   position: absolute;
+  height: 100%;
+  padding:40px;
+ 
   left:50%;
   top:50%;
   transform: translate(-50%, -50%);
@@ -99,7 +103,8 @@ a {
 
 
 .crashed img{
-  width:30vw
+  height:60%;
+ 
 }
 
 .control{
@@ -123,15 +128,20 @@ a {
 .splash{
   display:flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   position: absolute;
- 
+  height: 100%;
  
   left:50%;
   top:50%;
   transform: translate(-50%, -50%);
 }
+.splash_img{
+  height:50%;
+}
 .play{
+  display: none;
   margin:1em;
   font-size: 2em;
   border-radius: 1em;
@@ -146,6 +156,10 @@ a {
   background-color: darkgreen;
 
 }
+.loading_img{
+  margin:15px;
+  width:150px;
+}
 
 
 
@@ -156,11 +170,11 @@ a {
   justify-content: space-evenly;
   flex-wrap: wrap;
   align-items: center;
-  background-color: #E4E5E5;
+  background-color: white;
 }
 
 .transport_logo{
-  background-color: #E4E5E5;
+  background-color: white;
   order:1;
   width:50%;
   margin-right: auto;
@@ -203,7 +217,7 @@ a {
   display:flex;
   justify-content: center;
   align-items: center;
-  background-color: white;
+  background-color: #E4E5E5;
 
 }
 
@@ -219,7 +233,7 @@ a {
 }
 .play_text{
   color:black;
-  font-size: 1.2vw;
+  font-size: 3vw;
   font-weight: 500;
 }
 
@@ -751,6 +765,26 @@ nav li{
     align-items: center;
     padding:0.3em;
   }
+  .play_text{
+    color:black;
+    font-size: 1.2vw;
+    font-weight: 500;
+  }
+
+  .crashed{
+    display:none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    height: 100%;
+    padding:0px;
+   
+    left:50%;
+    top:50%;
+    transform: translate(-50%, -50%);
+  }
+  
   
   
   .play_button:hover{
